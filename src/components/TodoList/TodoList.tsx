@@ -13,11 +13,18 @@ export const TodoList = () => {
   };
 
   return (
-    <>
+    <div aria-live="polite">
       {todos.map((todo) => (
         <div key={todo.id}>
-          <input type="checkbox" onChange={() => toggleTodo(todo)} />
-          <p>{todo.description}</p>
+          <input
+            id={`${todo.id}-checkbox`}
+            type="checkbox"
+            onChange={() => toggleTodo(todo)}
+            aria-checked={todo.completed}
+          />
+          <label htmlFor={`${todo.id}-checkbox`}>
+            <p>{todo.description}</p>
+          </label>
         </div>
       ))}
       <div>
@@ -26,8 +33,10 @@ export const TodoList = () => {
           onChange={(event) => setDescription(event.target.value)}
           onKeyUp={(event) => event.key === 'Enter' && handleAddTodo()}
         />
-        <button onClick={handleAddTodo}>Add todo</button>
+        <button disabled={!description} onClick={handleAddTodo}>
+          Add todo
+        </button>
       </div>
-    </>
+    </div>
   );
 };
