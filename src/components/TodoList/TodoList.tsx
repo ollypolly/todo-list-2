@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTodos } from './useTodos';
 
 export const TodoList = () => {
-  const { todos, toggleTodo, addTodo } = useTodos();
+  const { todos, toggleTodo, addTodo, deleteTodo } = useTodos();
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
@@ -20,11 +20,18 @@ export const TodoList = () => {
             id={`${todo.id}-checkbox`}
             type="checkbox"
             onChange={() => toggleTodo(todo)}
+            checked={todo.completed}
             aria-checked={todo.completed}
           />
           <label htmlFor={`${todo.id}-checkbox`}>
             <p>{todo.description}</p>
           </label>
+          <button
+            onClick={() => deleteTodo(todo)}
+            aria-label="Delete this todo"
+          >
+            delete
+          </button>
         </div>
       ))}
       <div>
@@ -33,7 +40,11 @@ export const TodoList = () => {
           onChange={(event) => setDescription(event.target.value)}
           onKeyUp={(event) => event.key === 'Enter' && handleAddTodo()}
         />
-        <button disabled={!description} onClick={handleAddTodo}>
+        <button
+          disabled={!description.trim()}
+          onClick={handleAddTodo}
+          aria-label="Add a new todo"
+        >
           Add todo
         </button>
       </div>
