@@ -42,11 +42,18 @@ export const useTodos = () => {
       )
     );
 
-  const toggleTodo = ({ id, completed }: Todo) =>
-    updateTodo({ id, completed: !completed });
+  const toggleTodo = (id: string) =>
+    todos.map((todo) =>
+      todo.id === id
+        ? {
+            ...todo,
+            completed: !todo.completed,
+          }
+        : todo
+    );
 
-  const deleteTodo = (todoToDelete: Todo) =>
-    setTodos(todos.filter((todo) => todo.id !== todoToDelete.id));
+  const deleteTodo = (id: string) =>
+    setTodos(todos.filter((todo) => todo.id !== id));
 
   return {
     todos,

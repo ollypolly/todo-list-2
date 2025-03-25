@@ -14,22 +14,19 @@ export const TodoList = () => {
 
   return (
     <div aria-live="polite">
-      {todos.map((todo) => (
-        <div key={todo.id}>
+      {todos.map(({ id, completed, description }) => (
+        <div key={id}>
           <input
-            id={`${todo.id}-checkbox`}
+            id={`${id}-checkbox`}
             type="checkbox"
-            onChange={() => toggleTodo(todo)}
-            checked={todo.completed}
-            aria-checked={todo.completed}
+            onChange={() => toggleTodo(id)}
+            checked={completed}
+            aria-checked={completed}
           />
-          <label htmlFor={`${todo.id}-checkbox`}>
-            <p>{todo.description}</p>
+          <label htmlFor={`${id}-checkbox`}>
+            <p className={completed ? 'line-through' : ''}>{description}</p>
           </label>
-          <button
-            onClick={() => deleteTodo(todo)}
-            aria-label="Delete this todo"
-          >
+          <button onClick={() => deleteTodo(id)} aria-label="Delete this todo">
             delete
           </button>
         </div>
