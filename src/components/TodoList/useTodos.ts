@@ -10,7 +10,7 @@ const initialTodos: Todo[] = [
   },
   {
     id: '2',
-    description: 'My test todo',
+    description: 'My second test todo',
     completed: false,
   },
 ];
@@ -30,7 +30,7 @@ export const useTodos = () => {
       },
     ]);
 
-  const updateTodo = (updatedTodo: Todo) =>
+  const updateTodo = (updatedTodo: Partial<Todo> & Pick<Todo, 'id'>) =>
     setTodos(
       todos.map((todo) =>
         todo.id === updatedTodo.id
@@ -42,6 +42,9 @@ export const useTodos = () => {
       )
     );
 
+  const toggleTodo = ({ id, completed }: Todo) =>
+    updateTodo({ id, completed: !completed });
+
   const deleteTodo = (todoToDelete: Todo) =>
     setTodos(todos.filter((todo) => todo.id !== todoToDelete.id));
 
@@ -49,6 +52,7 @@ export const useTodos = () => {
     todos,
     addTodo,
     updateTodo,
+    toggleTodo,
     deleteTodo,
   };
 };
