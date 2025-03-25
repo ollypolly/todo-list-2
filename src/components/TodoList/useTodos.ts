@@ -7,13 +7,27 @@ const initialTodos: Todo[] = [
     description: 'My test todo',
     completed: false,
   },
+  {
+    id: '2',
+    description: 'My test todo',
+    completed: false,
+  },
 ];
 
 export const useTodos = () => {
   // Todo state - could be pulled from an api
   const [todos, setTodos] = useState(initialTodos);
 
-  const addTodo = (newTodo: Todo) => setTodos([...todos, newTodo]);
+  const addTodo = (newTodo: Partial<Todo>) =>
+    setTodos([
+      ...todos,
+      {
+        id: 'generate',
+        completed: false,
+        description: '',
+        ...newTodo,
+      },
+    ]);
 
   const updateTodo = (updatedTodo: Todo) =>
     setTodos(

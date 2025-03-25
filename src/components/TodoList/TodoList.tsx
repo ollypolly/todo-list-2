@@ -6,7 +6,10 @@ export const TodoList = () => {
   return (
     <>
       {todos.map((todo) => (
-        <p>{todo.description}</p>
+        <>
+          <input type="checkbox" />
+          <p>{todo.description}</p>
+        </>
       ))}
     </>
   );
