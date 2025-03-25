@@ -1,11 +1,8 @@
-import { Todo } from '../../types/Todo';
+import { useTodos } from './useTodos';
 
-type TodoListProps = {
-  todos: Todo[];
-  setTodos: (todos: Todo[]) => void;
-};
+export const TodoList = () => {
+  const { todos } = useTodos();
 
-export const TodoList = ({ todos }: TodoListProps) => {
   return (
     <>
       {todos.map((todo) => (
