@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Todo } from '../../types/Todo';
+import { generateId } from '../../utils/generateId';
 
 const initialTodos: Todo[] = [
   {
@@ -22,7 +23,7 @@ export const useTodos = () => {
     setTodos([
       ...todos,
       {
-        id: 'generate',
+        id: generateId(),
         completed: false,
         description: '',
         ...newTodo,
