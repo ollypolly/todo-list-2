@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTodos } from './useTodos';
+import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
-  const { todos, toggleTodo, addTodo, deleteTodo } = useTodos();
+  const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
@@ -14,27 +15,13 @@ export const TodoList = () => {
 
   return (
     <div aria-live="polite">
-      {todos.map(({ id, completed, description }) => (
-        <div key={id} className="flex items-center justify-between p-2">
-          <input
-            id={`${id}-checkbox`}
-            type="checkbox"
-            onChange={() => toggleTodo(id)}
-            checked={completed}
-            aria-checked={completed}
-            className="m-2"
-          />
-          <label htmlFor={`${id}-checkbox`} className="m-2">
-            <p className={completed ? 'line-through' : ''}>{description}</p>
-          </label>
-          <button
-            onClick={() => deleteTodo(id)}
-            aria-label="Delete this todo"
-            className="m-2"
-          >
-            delete
-          </button>
-        </div>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          {...todo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
       ))}
       <div className="flex mt-3">
         <input
