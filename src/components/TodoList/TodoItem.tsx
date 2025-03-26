@@ -46,7 +46,7 @@ export const TodoItem = ({
         onChange={() => toggleTodo(id)}
         checked={completed}
         aria-checked={completed}
-        className="h-4 w-4 m-2"
+        className="h-4 w-4 m-2 focus:ring-2 focus:ring-red-500"
       />
       <label
         htmlFor={`${id}-checkbox`}
