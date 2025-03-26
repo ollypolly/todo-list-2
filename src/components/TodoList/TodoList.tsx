@@ -3,7 +3,7 @@ import { useTodos } from './useTodos';
 import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
-  const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
+  const { todos, addTodo, toggleTodo, deleteTodo, reorderTodo } = useTodos();
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
@@ -15,12 +15,15 @@ export const TodoList = () => {
 
   return (
     <div aria-live="polite">
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <TodoItem
           key={todo.id}
           {...todo}
+          index={index}
+          todosLength={todos.length}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          reorderTodo={reorderTodo}
         />
       ))}
       <div className="flex mt-3">
