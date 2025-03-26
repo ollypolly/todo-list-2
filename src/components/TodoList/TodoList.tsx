@@ -37,7 +37,8 @@ export const TodoList = () => {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           onKeyUp={(event) => event.key === 'Enter' && handleAddTodo()}
-          className="p-2 flex-grow"
+          className="p-3 flex-grow"
+          placeholder="Enter a new todo..."
         />
         <button
           disabled={!description.trim()}
