@@ -14,18 +14,24 @@ export const TodoList = () => {
   };
 
   return (
-    <div aria-live="polite" className="m-3">
-      {todos.map((todo, index) => (
-        <TodoItem
-          key={todo.id}
-          {...todo}
-          index={index}
-          todosLength={todos.length}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-          reorderTodo={reorderTodo}
-        />
-      ))}
+    <div
+      aria-live="polite"
+      className="flex flex-col max-w-2xl mx-auto h-full w-full"
+    >
+      <div className="flex flex-col flex-grow">
+        {todos.map((todo, index) => (
+          <TodoItem
+            key={todo.id}
+            {...todo}
+            index={index}
+            todosLength={todos.length}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+            reorderTodo={reorderTodo}
+          />
+        ))}
+      </div>
+
       <div className="flex mt-3 flex-wrap gap-2">
         <input
           value={description}

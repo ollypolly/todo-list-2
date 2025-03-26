@@ -25,7 +25,7 @@ export const TodoItem = ({
   const isMoveDownDisabled = index === todosLength - 1;
 
   return (
-    <div className="flex items-center p-2 flex-wrap gap-2 hover:bg-gray-700 rounded-sm flex-grow max-w-xl">
+    <div className="flex items-center p-2 flex-wrap gap-2 hover:bg-gray-700 rounded-sm">
       <button
         disabled={isMoveUpDisabled}
         aria-disabled={isMoveUpDisabled}
@@ -50,7 +50,7 @@ export const TodoItem = ({
       />
       <label
         htmlFor={`${id}-checkbox`}
-        className="cursor-pointer flex-grow flex-1/2 text-left"
+        className="cursor-pointer flex-grow text-left"
       >
         <p className={completed ? 'line-through' : ''}>{description}</p>
       </label>
