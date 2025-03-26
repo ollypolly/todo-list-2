@@ -43,13 +43,15 @@ export const useTodos = () => {
     );
 
   const toggleTodo = (id: string) =>
-    todos.map((todo) =>
-      todo.id === id
-        ? {
-            ...todo,
-            completed: !todo.completed,
-          }
-        : todo
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed: !todo.completed,
+            }
+          : todo
+      )
     );
 
   const deleteTodo = (id: string) =>
