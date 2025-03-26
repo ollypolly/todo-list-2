@@ -14,7 +14,7 @@ export const TodoList = () => {
   };
 
   return (
-    <div aria-live="polite">
+    <div aria-live="polite" className="m-3">
       {todos.map((todo, index) => (
         <TodoItem
           key={todo.id}
@@ -26,12 +26,12 @@ export const TodoList = () => {
           reorderTodo={reorderTodo}
         />
       ))}
-      <div className="flex mt-3">
+      <div className="flex mt-3 flex-wrap gap-2">
         <input
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           onKeyUp={(event) => event.key === 'Enter' && handleAddTodo()}
-          className="mr-2 p-2"
+          className="p-2 flex-grow"
         />
         <button
           disabled={!description.trim()}
